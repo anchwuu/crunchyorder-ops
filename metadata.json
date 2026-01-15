@@ -1,0 +1,7 @@
+{
+  "name": "CrunchyOrder Ops",
+  "description": "A high-speed internal POS and order management system designed for fast-food employees, prioritizing alphanumeric product codes and billing efficiency.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
