@@ -108,18 +108,18 @@ const BillingView: React.FC<BillingViewProps> = ({ order, onConfirm, onHold }) =
         </div>
       </div>
 
-      <div className="p-4 bg-white border-t border-gray-100 sticky bottom-0 flex space-x-3">
+      <div className="p-4 bg-white border-t border-gray-100 sticky bottom-0 flex space-x-3 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
         <button
           onClick={() => onHold(customerName, customerPhone)}
-          className="flex-1 py-5 bg-gray-100 text-gray-500 font-black rounded-3xl shadow-sm text-base uppercase tracking-tight transition active:scale-95 hover:bg-gray-200"
+          className="flex-1 py-4 bg-gray-100 text-gray-500 font-extrabold rounded-3xl shadow-sm text-xs uppercase tracking-tight transition active:scale-95 hover:bg-gray-200"
         >
-          Hold For Later
+          Hold Later
         </button>
         <button
           onClick={() => onConfirm(customerName, customerPhone)}
           disabled={!isValidName}
           aria-label="Confirm order and move to queue"
-          className={`flex-[2] py-5 font-black rounded-3xl shadow-lg text-base uppercase tracking-tight transition ${isValidName
+          className={`flex-[2] py-4 font-black rounded-3xl shadow-lg text-sm uppercase tracking-tight transition ${isValidName
             ? 'bg-red-600 text-white active:scale-95 hover:bg-red-700'
             : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}

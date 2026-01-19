@@ -311,7 +311,7 @@ const OrderScreen: React.FC<OrderScreenProps> = ({
 
             {/* Sticky Order Bar */}
             {activeDraft && activeTab === 'MENU' && activeDraft.items.length > 0 && (
-              <div className="fixed bottom-6 left-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-8 duration-500">
+              <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-8 duration-500">
                 <div className="bg-slate-900 text-white rounded-[2.5rem] shadow-2xl p-5 flex items-center justify-between border border-white/5 backdrop-blur-sm">
                   <div onClick={() => setActiveTab('CART')} className="cursor-pointer flex items-center space-x-4">
                     <div className="bg-red-600 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg">

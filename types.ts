@@ -20,7 +20,8 @@ export enum AppView {
   QUEUE = 'QUEUE',
   BILLING = 'BILLING',
   MANAGEMENT = 'MANAGEMENT',
-  HISTORY = 'HISTORY'
+  HISTORY = 'HISTORY',
+  SUCCESS = 'SUCCESS'
 }
 
 export interface OrderSession {

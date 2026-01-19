@@ -9,6 +9,7 @@ import BillingView from './components/BillingView';
 import Navigation from './components/Navigation';
 import QueueView from './components/QueueView';
 import HistoryView from './components/HistoryView';
+import SuccessView from './components/SuccessView';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>(AppView.ORDER);
@@ -32,6 +33,7 @@ const App: React.FC = () => {
     const saved = localStorage.getItem('crunchy_order_history');
     return saved ? JSON.parse(saved) : [];
   });
+  const [lastConfirmedOrder, setLastConfirmedOrder] = useState<OrderSession | null>(null);
 
   useEffect(() => {
     localStorage.setItem('crunchy_products', JSON.stringify(products));
@@ -232,8 +234,9 @@ const App: React.FC = () => {
       return [orderWithFinalInfo, ...prev];
     });
 
+    setLastConfirmedOrder(orderWithFinalInfo);
     setActiveOrder(null);
-    setView(AppView.ORDER);
+    setView(AppView.SUCCESS);
   };
 
   const deliverOrder = (orderId: string) => {
@@ -329,6 +332,16 @@ const App: React.FC = () => {
             onCancel={cancelOrder}
             onResume={resumeOrder}
             onNewOrder={() => setView(AppView.ORDER)}
+          />
+        )}
+
+        {view === AppView.SUCCESS && lastConfirmedOrder && (
+          <SuccessView
+            order={lastConfirmedOrder}
+            onNewOrder={() => {
+              setLastConfirmedOrder(null);
+              setView(AppView.ORDER);
+            }}
           />
         )}
 
