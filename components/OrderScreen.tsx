@@ -311,27 +311,27 @@ const OrderScreen: React.FC<OrderScreenProps> = ({
 
             {/* Sticky Order Bar */}
             {activeDraft && activeTab === 'MENU' && activeDraft.items.length > 0 && (
-              <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-8 duration-500">
-                <div className="bg-slate-900 text-white rounded-[2.5rem] shadow-2xl p-5 flex items-center justify-between border border-white/5 backdrop-blur-sm">
-                  <div onClick={() => setActiveTab('CART')} className="cursor-pointer flex items-center space-x-4">
-                    <div className="bg-red-600 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-4 right-4 z-40 animate-in fade-in slide-in-from-bottom-8 duration-500">
+                <div className="bg-slate-900 text-white rounded-[2.5rem] shadow-2xl p-4 flex items-center justify-between border border-white/5 backdrop-blur-sm gap-3">
+                  <div onClick={() => setActiveTab('CART')} className="cursor-pointer flex items-center space-x-3 min-w-0">
+                    <div className="bg-red-600 w-11 h-11 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-lg">
                       <span className="font-black text-lg">{activeDraft.items.length}</span>
                     </div>
-                    <div>
-                      <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">TOTAL BILL</p>
-                      <p className="text-xl font-black text-white">₹{totalPrice.toFixed(2)}</p>
+                    <div className="min-w-0">
+                      <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1 truncate">TOTAL BILL</p>
+                      <p className="text-lg font-black text-white truncate">₹{totalPrice.toFixed(2)}</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2 flex-shrink-0">
                     <button
                       onClick={holdOrder}
-                      className="bg-slate-800 text-white px-6 py-4 rounded-[1.5rem] font-black text-xs uppercase tracking-tight shadow-xl active:scale-95 transition-all border border-white/10 hover:bg-slate-700"
+                      className="bg-slate-800 text-white px-4 py-4 rounded-[1.5rem] font-black text-[10px] uppercase tracking-tight shadow-xl active:scale-95 transition-all border border-white/10 hover:bg-slate-700"
                     >
                       Hold
                     </button>
                     <button
                       onClick={confirmOrder}
-                      className="bg-white text-slate-900 px-8 py-4 rounded-[1.5rem] font-black text-sm uppercase tracking-tight shadow-xl active:scale-95 transition-all"
+                      className="bg-white text-slate-900 px-6 py-4 rounded-[1.5rem] font-black text-xs uppercase tracking-tight shadow-xl active:scale-95 transition-all"
                     >
                       Confirm
                     </button>

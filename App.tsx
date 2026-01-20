@@ -287,7 +287,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100 overflow-hidden">
+    <div className="h-full flex flex-col bg-gray-100 overflow-hidden">
       <Navigation currentView={view} setView={setView} pendingCount={pendingOrders.length} />
 
       <main className="flex-1 flex flex-col overflow-hidden relative" role="main">

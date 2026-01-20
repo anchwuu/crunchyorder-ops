@@ -28,15 +28,15 @@ const BillingView: React.FC<BillingViewProps> = ({ order, onConfirm, onHold }) =
 
   return (
     <div className="h-full flex flex-col bg-white overflow-hidden">
-      <div className="bg-green-600 p-6 text-white text-center flex-shrink-0">
-        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2 border border-white/40">
-          <ICONS.Check />
+      <div className="bg-green-600 p-4 text-white text-center flex-shrink-0">
+        <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-1 border border-white/40">
+          <ICONS.Check size={16} />
         </div>
-        <h1 className="text-xl font-black uppercase tracking-tight">Billing Entry</h1>
-        <p className="opacity-70 font-mono-custom text-[10px]">ORDER REF: {order.id}</p>
+        <h1 className="text-lg font-black uppercase tracking-tight">Billing Entry</h1>
+        <p className="opacity-70 font-mono-custom text-[8px]">ORDER REF: {order.id}</p>
       </div>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide p-4 space-y-4 pb-24">
+      <div className="flex-1 overflow-y-auto scrollbar-hide p-4 space-y-4">
         {/* Customer Info Section */}
         <div className="bg-white border border-gray-200 p-5 rounded-3xl shadow-sm space-y-4">
           <div>
@@ -101,17 +101,18 @@ const BillingView: React.FC<BillingViewProps> = ({ order, onConfirm, onHold }) =
           </div>
         </div>
 
-        <div className="bg-blue-50 border border-blue-100 p-4 rounded-2xl">
+        <div className="bg-blue-50 border border-blue-100 p-4 rounded-2xl mb-8">
           <p className="text-xs text-blue-700 font-bold leading-snug">
             ⚠️ Type these codes into the official register. Once paid, click "Confirm" to move to the kitchen/delivery queue.
           </p>
         </div>
       </div>
 
-      <div className="p-4 bg-white border-t border-gray-100 sticky bottom-0 flex space-x-3 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+      {/* Action Bar - Fixed Footer Style */}
+      <div className="p-4 bg-white border-t border-gray-100 flex-shrink-0 flex space-x-3 pb-[calc(1.5rem+env(safe-area-inset-bottom))] mb-2 relative z-50">
         <button
           onClick={() => onHold(customerName, customerPhone)}
-          className="flex-1 py-4 bg-gray-100 text-gray-500 font-extrabold rounded-3xl shadow-sm text-xs uppercase tracking-tight transition active:scale-95 hover:bg-gray-200"
+          className="flex-1 py-4 bg-gray-100 text-gray-500 font-extrabold rounded-3xl shadow-sm text-[10px] uppercase tracking-tight transition active:scale-95 hover:bg-gray-200"
         >
           Hold Later
         </button>
@@ -119,7 +120,7 @@ const BillingView: React.FC<BillingViewProps> = ({ order, onConfirm, onHold }) =
           onClick={() => onConfirm(customerName, customerPhone)}
           disabled={!isValidName}
           aria-label="Confirm order and move to queue"
-          className={`flex-[2] py-4 font-black rounded-3xl shadow-lg text-sm uppercase tracking-tight transition ${isValidName
+          className={`flex-[2] py-4 font-black rounded-3xl shadow-lg text-[12px] uppercase tracking-tight transition ${isValidName
             ? 'bg-red-600 text-white active:scale-95 hover:bg-red-700'
             : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}

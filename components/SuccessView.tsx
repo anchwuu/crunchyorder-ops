@@ -58,8 +58,8 @@ const SuccessView: React.FC<SuccessViewProps> = ({ order, onNewOrder }) => {
             </div>
 
             {/* Printable Receipt (visible only during print) */}
-            <div className="hidden print:block p-8 font-mono text-sm text-black bg-white">
-                <div className="text-center mb-6">
+            <div className="hidden print:block p-4 font-mono text-[10px] text-black bg-white max-w-full overflow-hidden">
+                <div className="text-center mb-4">
                     <h1 className="text-xl font-bold uppercase">POPIAH KITCHEN</h1>
                     <p className="text-xs">Order Management System v2.0</p>
                     <div className="border-t border-dashed border-black my-4"></div>
