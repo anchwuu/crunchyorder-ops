@@ -14,41 +14,52 @@ import SuccessView from './components/SuccessView';
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>(AppView.ORDER);
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('crunchy_products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+    const saved = localStorage.getItem('popiah_products');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Merge INITIAL_PRODUCTS to ensure new items are added
+      const merged = [...parsed];
+      INITIAL_PRODUCTS.forEach(initP => {
+        if (!merged.find(p => p.id === initP.id)) {
+          merged.push(initP);
+        }
+      });
+      return merged;
+    }
+    return INITIAL_PRODUCTS;
   });
 
   const [drafts, setDrafts] = useState<OrderSession[]>(() => {
-    const saved = localStorage.getItem('crunchy_drafts');
+    const saved = localStorage.getItem('popiah_drafts');
     return saved ? JSON.parse(saved) : [];
   });
   const [activeDraftId, setActiveDraftId] = useState<string | null>(null);
 
   const [activeOrder, setActiveOrder] = useState<OrderSession | null>(null);
   const [pendingOrders, setPendingOrders] = useState<OrderSession[]>(() => {
-    const saved = localStorage.getItem('crunchy_pending_orders');
+    const saved = localStorage.getItem('popiah_pending_orders');
     return saved ? JSON.parse(saved) : [];
   });
   const [completedOrders, setCompletedOrders] = useState<OrderSession[]>(() => {
-    const saved = localStorage.getItem('crunchy_order_history');
+    const saved = localStorage.getItem('popiah_order_history');
     return saved ? JSON.parse(saved) : [];
   });
   const [lastConfirmedOrder, setLastConfirmedOrder] = useState<OrderSession | null>(null);
 
   useEffect(() => {
-    localStorage.setItem('crunchy_products', JSON.stringify(products));
+    localStorage.setItem('popiah_products', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
-    localStorage.setItem('crunchy_drafts', JSON.stringify(drafts));
+    localStorage.setItem('popiah_drafts', JSON.stringify(drafts));
   }, [drafts]);
 
   useEffect(() => {
-    localStorage.setItem('crunchy_pending_orders', JSON.stringify(pendingOrders));
+    localStorage.setItem('popiah_pending_orders', JSON.stringify(pendingOrders));
   }, [pendingOrders]);
 
   useEffect(() => {
-    localStorage.setItem('crunchy_order_history', JSON.stringify(completedOrders));
+    localStorage.setItem('popiah_order_history', JSON.stringify(completedOrders));
   }, [completedOrders]);
 
   const getActiveOrderData = () => {
